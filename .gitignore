@@ -1,0 +1,6 @@
+.ipynb_checkpoints/*
+data/Condition Monitoring of Hydraulic Systems/*
+data/Solar Power Generation Data/*
+data/Wind Power Generation Data/*
+data/Wind Turbine Scada Dataset/*
+data/*.py
