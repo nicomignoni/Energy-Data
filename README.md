@@ -196,13 +196,13 @@ for value in data.values():
 
 
     
-![png](TSDB%202022%20-%20ProjectWork_files/TSDB%202022%20-%20ProjectWork_10_0.png)
+![png](plot/TSDB%202022%20-%20ProjectWork_10_0.png)
     
 
 
 
     
-![png](TSDB%202022%20-%20ProjectWork_files/TSDB%202022%20-%20ProjectWork_10_1.png)
+![png](plot/TSDB%202022%20-%20ProjectWork_10_1.png)
     
 
 
@@ -228,13 +228,13 @@ for value in data.values():
 
 
     
-![png](TSDB%202022%20-%20ProjectWork_files/TSDB%202022%20-%20ProjectWork_12_0.png)
+![png](plot/TSDB%202022%20-%20ProjectWork_12_0.png)
     
 
 
 
     
-![png](TSDB%202022%20-%20ProjectWork_files/TSDB%202022%20-%20ProjectWork_12_1.png)
+![png](plot/TSDB%202022%20-%20ProjectWork_12_1.png)
     
 
 
@@ -261,7 +261,7 @@ metrics.tail(1)
 
 
     
-![png](TSDB%202022%20-%20ProjectWork_files/TSDB%202022%20-%20ProjectWork_14_0.png)
+![png](plot/TSDB%202022%20-%20ProjectWork_14_0.png)
     
 
 
@@ -323,7 +323,7 @@ metrics.tail(1)
 
 
     
-![png](TSDB%202022%20-%20ProjectWork_files/TSDB%202022%20-%20ProjectWork_15_0.png)
+![png](plot/TSDB%202022%20-%20ProjectWork_15_0.png)
     
 
 
@@ -377,7 +377,7 @@ for value in data.values():
 
 
     
-![png](TSDB%202022%20-%20ProjectWork_files/TSDB%202022%20-%20ProjectWork_16_1.png)
+![png](plot/TSDB%202022%20-%20ProjectWork_16_1.png)
     
 
 
@@ -386,7 +386,7 @@ for value in data.values():
 
 
     
-![png](TSDB%202022%20-%20ProjectWork_files/TSDB%202022%20-%20ProjectWork_16_3.png)
+![png](plot/TSDB%202022%20-%20ProjectWork_16_3.png)
     
 
 
@@ -403,7 +403,7 @@ plt.show()
 
 
     
-![png](TSDB%202022%20-%20ProjectWork_files/TSDB%202022%20-%20ProjectWork_19_0.png)
+![png](plot/TSDB%202022%20-%20ProjectWork_19_0.png)
     
 
 
@@ -836,7 +836,7 @@ print(f"Validation MAE = {round(mae(series_wind, series_wind_back),4)}")
 
 
     
-![png](TSDB%202022%20-%20ProjectWork_files/TSDB%202022%20-%20ProjectWork_36_1.png)
+![png](plot/TSDB%202022%20-%20ProjectWork_36_1.png)
     
 
 
