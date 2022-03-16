@@ -18,7 +18,8 @@ Data consists of a CSV, provided by [Kaggle](https://www.kaggle.com/nicholasjhan
 It comprises several energy sources, some of them renewables while other ones thermal. For our purposes, we will focus only on the solar and wind generation data, with the support of the weather data as a past covariate for eolic generation forecasting. Data has been managed using [MongoDB](https://www.mongodb.com/) (Banker *et al.*, 2016), which is easily integrated with Python and pandas.
 
 ## Univariate Forecasting 
-<img src="img/neural_prophet.png" align="left" alt="Drawing" style="width: 250px;"/>
+<img src="img/neural_prophet.png" alt="Drawing" style="width: 250px; float: right;"/>
+
 
 NeuralProphet is the successor to Facebook Prophet. Both projects have been developed out of the need to bridge the gap between interpretable classical methods and scalable deep learning models. However, Prophet lacks local context, which is essential for forecasting the near term future and is challenging to extend due to its Stan backend. NeuralProphet is a hybrid forecasting framework based on PyTorch and trained with standard deep learning methods. Local context is introduced with auto-regression and covariate modules, which can be configured as classical linear regression or as Neural Networks [1]. 
 
@@ -49,7 +50,7 @@ plt.rcParams.update({
 ```
 
 ### Fetching and processing data
-<img src="img/mongo.png" align="left" alt="Drawing" style="width: 200px;">
+<img src="img/mongo.png" alt="Drawing" style="width: 200px; float: right;">
 
 Data is managed using MongoDB, which is well integrated with `pandas`, allowing for an easy manipulation. MongoDB also provides a Python library from which we can call the `MongoClient` for interacting with the collections. 
 Energy data needs some processing, given that there are missing data. For this case, we filled the missing data using the *forward fill* method. NeuralProphet needs the timestamp column to be called `ds`, while the target one `y`, so we will proceed to rename them. 
@@ -71,19 +72,6 @@ generation
 
 
 <div>
-<style scoped>
-    .dataframe tbody tr th:only-of-type {
-        vertical-align: middle;
-    }
-
-    .dataframe tbody tr th {
-        vertical-align: top;
-    }
-
-    .dataframe thead th {
-        text-align: right;
-    }
-</style>
 <table border="1" class="dataframe">
   <thead>
     <tr style="text-align: right;">
@@ -284,19 +272,6 @@ metrics.tail(1)
 
 
 <div>
-<style scoped>
-    .dataframe tbody tr th:only-of-type {
-        vertical-align: middle;
-    }
-
-    .dataframe tbody tr th {
-        vertical-align: top;
-    }
-
-    .dataframe thead th {
-        text-align: right;
-    }
-</style>
 <table border="1" class="dataframe">
   <thead>
     <tr style="text-align: right;">
@@ -359,19 +334,6 @@ metrics.tail(1)
 
 
 <div>
-<style scoped>
-    .dataframe tbody tr th:only-of-type {
-        vertical-align: middle;
-    }
-
-    .dataframe tbody tr th {
-        vertical-align: top;
-    }
-
-    .dataframe thead th {
-        text-align: right;
-    }
-</style>
 <table border="1" class="dataframe">
   <thead>
     <tr style="text-align: right;">
@@ -446,7 +408,8 @@ plt.show()
 
 
 ## Covariate Multivariate Forecasting 
-<img src="img/darts.png" align="left" style="width: 250px;"/>
+<img src="img/darts.png" style="width: 250px; float: right;"/>
+
 
 Darts offers a variety of models, from classics such as ARIMA to state-of-the-art deep neural networks. The emphasis of the library is on offering modern machine learning functionalities, such as supporting multidimensional series, meta-learning on multiple series, training on large datasets, incorporating external data, ensembling models, and providing rich support for probabilistic forecasting. The need for Darts comes from NeuralProphet lack of multivariate capabilities, which will prove essential to improve the quality of wind energy forecasting.
 
@@ -503,19 +466,6 @@ weather_df
 
 
 <div>
-<style scoped>
-    .dataframe tbody tr th:only-of-type {
-        vertical-align: middle;
-    }
-
-    .dataframe tbody tr th {
-        vertical-align: top;
-    }
-
-    .dataframe thead th {
-        text-align: right;
-    }
-</style>
 <table border="1" class="dataframe">
   <thead>
     <tr style="text-align: right;">
@@ -639,19 +589,6 @@ weather_cov_df
 
 
 <div>
-<style scoped>
-    .dataframe tbody tr th:only-of-type {
-        vertical-align: middle;
-    }
-
-    .dataframe tbody tr th {
-        vertical-align: top;
-    }
-
-    .dataframe thead th {
-        text-align: right;
-    }
-</style>
 <table border="1" class="dataframe">
   <thead>
     <tr style="text-align: right;">
@@ -871,13 +808,9 @@ model.save_model(f"model/{today}.pth.tar")
     [2022-03-11 19:14:57,605] INFO | darts.models.forecasting.torch_forecasting_model | Train dataset contains 3007 samples.
     [2022-03-11 19:14:57,609] INFO | darts.models.forecasting.torch_forecasting_model | Time series values are 64-bits; casting model to float64.
     [2022-03-11 19:14:57,609] INFO | darts.models.forecasting.torch_forecasting_model | Time series values are 64-bits; casting model to float64.
-    
+    0%|          | 0/300 [00:00<?, ?it/s]
+    Training loss: 0.11726
 
-
-      0%|          | 0/300 [00:00<?, ?it/s]
-
-
-    Training loss: 0.11726
 
 Given the resulting model, we can use it to evaluate the historical forecasts that would have been obtained by this model on the `series`. The metric used is MAE, as it did for the univariate case.
 
@@ -907,19 +840,22 @@ print(f"Validation MAE = {round(mae(series_wind, series_wind_back),4)}")
     
 
 
-It can be seen that the performance of the `BlockRNNModel`, with multivarate past covariates, outperforms NeuralProphet: the former has a MAE of $0.4804$, while the latter is $0.768$.
+It can be seen that the performance of the `BlockRNNModel`, with multivarate past covariates, outperforms NeuralProphet: the former has a MAE of **0.4804**, while the latter is **0.768**.
 
 ## Conclusions and Future Work
-<img src="img/future_works.png" align="left" style="width: 700px;"/>
+
+<img src="img/future_works.png" style="width: 700px; float: right;"/>
 
 The objective of this project work was to create the preliminary basis for a forecasting tool for renewable energy generation.
 This project gives a glimpse of the difficulties of predicting curves that do not have inherent seasonality patterns, such as wind generation. 
-Future work would focus on deploying a pipeline for pulling data, regarding energy and weather, in order to build a renewable energy forecasting tool. Important features that can also be considered are the aggregate or local load and energy price.
 
 <img src="img/serra_giannina.png" align="left" style="width: 400px;"/>
 
+Future work would focus on deploying a pipeline for pulling data, regarding energy and weather, in order to build a renewable energy forecasting tool. Important features that can also be considered are the aggregate or local load and energy price.
 In particular, several open-source tools, other than MongoDB, have been developed for timeseries management, such as [InfluxDB](https://www.influxdata.com/) and its plugin [Telegraph](https://www.influxdata.com/time-series-platform/telegraf/).
-The following is a custom [TOML](https://github.com/toml-lang/toml) configuration file used to pull data from OpenWeather. In particular, the current latitude and longitude coordinates target the "Serra Giannina" eolic plant, which is located in Apulia, near Melfi. This is being used in place of the default Telegraph OpenWeather `.conf` file, since the latter is too simplistic.
+The following is a custom [TOML](https://github.com/toml-lang/toml) configuration file used to pull data from OpenWeather. In particular, the current latitude and longitude coordinates target the "Serra Giannina" eolic plant, which is located in Apulia, near Melfi. This is being used in place of the default Telegraph OpenWeather `.conf` file, since the latter is too simplistic. 
+
+```
 # [global_tags]
 user = "${USER}"
 
@@ -980,6 +916,7 @@ tagexclude = ["url", "host", "user"]
 		
 		[[inputs.http.json_v2.tag]]
 		path = "name"
+```
 ## References 
 Triebe, Oskar, et al. "NeuralProphet: Explainable Forecasting at Scale." arXiv preprint arXiv:2111.15397 (2021). 
 
