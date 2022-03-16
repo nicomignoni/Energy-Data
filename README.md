@@ -239,7 +239,7 @@ for value in data.values():
 
 
 ### Training the model and forecasting
-We train the model with a forecasting window of 24 hours, i.e., the day-ahead window. Tuning the hyperparameters is tricky: `n_lags` determines how far into the past the auto-regressive dependencies should be considered, while the `weekly_seasonality` makes the model look for seasonalities on a weekly basis. The validation set corresponds to $30\%$ of the six-month period.
+We train the model with a forecasting window of 24 hours, i.e., the day-ahead window. Tuning the hyperparameters is tricky: `n_lags` determines how far into the past the auto-regressive dependencies should be considered, while the `weekly_seasonality` makes the model look for seasonalities on a weekly basis. The validation set corresponds to 30% of the six-month period.
 
 
 ```python
